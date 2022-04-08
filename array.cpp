@@ -14,8 +14,7 @@ int main() {
   	// reference to front and back
 	arr.front() = arr.back() = 404;
   
-  	// iterators
-	//begin and end provide iterator
+  	// iterator to front and back
 	for (auto it = arr.begin(); it != arr.end(); ++it)
 		cout << *it << " "; cout << endl;
 	
