@@ -32,10 +32,10 @@ int main() {
 	s.clear();
 	print(s);
 
-    i = 5;
-    while ( i ) {	s.emplace(i);	--i;	}
+	i = 5;
+	while ( i ) {	s.emplace(i);	--i;	}
 
-    print(s);
+	print(s);
 
 	return 0;
 }
