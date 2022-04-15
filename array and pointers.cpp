@@ -28,5 +28,6 @@ int main()
     for (int i = 0; i < size; ++i)
         std::cout << ptrToDynamicArr[i] << " ";
 
+    delete[] ptrToDynamicArr;
     return 0;
 }
