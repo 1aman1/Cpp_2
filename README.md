@@ -1,4 +1,8 @@
-# cpp_2
-C++ related sharables.
+# Find stuff related to C++ & furthermore on Modern-C++ too
 
-This repo will help in quickly revamping C++ common functionalities like STL, pointers, dynamic memory allocation etc.
+* containers
+* multi-threading
+* pointers
+* dynamic memory allocation
+* polymorphism using
+* strings
