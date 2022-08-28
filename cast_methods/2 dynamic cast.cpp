@@ -35,7 +35,13 @@ A *f1()
 A *f2()
 {
     A *pb = new B;
-    C *pc = dynamic_cast<C *>(pb);
+    // the pointer to A, holding object of type 'B', can't be made to cast lower than the object type in heirarchy
+    // that is why the cast to C will result in seg-fault.
+    // C *pc = dynamic_cast<C *>(pb);
+
+    // But casting to B, will work just fine, because it is in the limit of heirarchy ladder.
+    B *pc = dynamic_cast<B *>(pb);
+    
     return pc;
 }
 
