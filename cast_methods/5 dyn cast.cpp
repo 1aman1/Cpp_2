@@ -35,7 +35,7 @@ int main()
     // Downcasting: unsafe - Employee does not have
     // the method, coding().
     // compile error: 'coding' : is not a member of 'Employee'
-    pEmp->coding();
+    // pEmp->coding();
     pProg->coding();
 
     return 0;
