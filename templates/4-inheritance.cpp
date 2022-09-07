@@ -10,7 +10,7 @@ private:
 };
 
 template <class T>
-class Derived : public Base
+class Derived : public Base<T>
 {
     T q;
 };
