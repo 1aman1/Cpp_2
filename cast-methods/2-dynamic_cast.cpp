@@ -1,61 +1,42 @@
 #include <iostream>
-using namespace std;
 
-class A
+/*
+pointer is upgraded, object knowledge remains same
+*/
+
+class base
 {
 public:
-    virtual void g() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
+    virtual void
+    basefun(){};
 };
 
-class B : public A
+class derived : public base
 {
 public:
-    virtual void g() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
+    void
+    derfun(){};
 };
 
-class C : public B
+void checkIsNull(void *Ptr)
 {
-public:
-    virtual void g() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-};
-
-class D : public C
-{
-public:
-    virtual void g() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-};
-
-A *f1()
-{
-    A *pa = new C;
-    B *pb = dynamic_cast<B *>(pa);
-    return pb;
-}
-
-A *f2()
-{
-    A *pb = new B;
-    // the pointer to A, holding object of type 'B', can't be made to cast lower than the object type in heirarchy
-    // that is why the cast to C will result in seg-fault.
-    // C *pc = dynamic_cast<C *>(pb);
-
-    // But casting to B, will work just fine, because it is in the limit of heirarchy ladder.
-    B *pc = dynamic_cast<B *>(pb);
-    
-    return pc;
-}
-
-A *f3()
-{
-    A *pa = new D;
-    B *pb = dynamic_cast<B *>(pa);
-    return pb;
+    if (Ptr == nullptr)
+        std::cout << "fail";
+    else
+        std::cout << "success\n";
 }
 
 int main()
 {
-    f1()->g(); // (1)
-    f2()->g(); // (2)
-    f3()->g(); // (3)
+    // base *Pb = new base(); // FAILS
+    base *Pb = new derived();
+
+    derived *Pd = dynamic_cast<derived *>(Pb);
+
+    checkIsNull(Pd);
+
+    Pb->basefun();
+    Pd->derfun();
+
     return 0;
 }

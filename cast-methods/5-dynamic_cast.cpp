@@ -7,7 +7,7 @@ private:
     int id;
 
 public:
-    void show_id() {}
+    virtual void show_id() {}
 };
 
 class Programmer : public Employee
