@@ -5,7 +5,6 @@
 int main()
 {
     std::vector<int> v1(10);
-    // v1.resize(10);
 
     std::iota(v1.begin(), v1.end(), 1);
 

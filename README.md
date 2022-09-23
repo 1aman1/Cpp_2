@@ -12,3 +12,13 @@
 * Lambda expression
 * constexpr
 * multi-threading
+
+__Compilation Behind The Scenes__
+
+-> preprocess : remove comments, macroso substitution, includes header contents
+
+-> compiler : gives assembly code
+
+-> assembler : gives out object code
+
+-> loader : loads dll, if any
