@@ -5,10 +5,9 @@ class wrInt
     int data;
 
 public:
-    wrInt() = delete;
-
     wrInt(int x) : data(x){};
 
+    wrInt() = delete;
     ~wrInt() = default;
 
     wrInt operator++()
