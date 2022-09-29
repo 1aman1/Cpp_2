@@ -3,27 +3,37 @@
 class Base
 {
 public:
-    void show() { std::cout << "Base::show()" << std::endl; }
     Base() { std::cout << "Base::Base()" << std::endl; }
+
+    Base(int x) { std::cout << "Base::Base(1 arg)" << std::endl; }
+
+    void
+    func() { std::cout << "Base::func()" << std::endl; }
 };
 
 int main()
 {
-    std::shared_ptr<Base> pointer_1(new Base);
+    std::shared_ptr<Base> SPtr(new Base);
 
-    pointer_1->show();
+    SPtr->func();
 
-    std::cout << pointer_1.get() << std::endl;
+    std::cout << "address:" << SPtr.get() << std::endl;
 
-    std::shared_ptr<Base> pointer_2(pointer_1); // INSTEAD
+    std::shared_ptr<Base> SPtr2(SPtr); // INSTEAD
 
-    std::shared_ptr<Base> pointer_3 = pointer_1;
+    std::shared_ptr<Base> SPtr3 = SPtr;
 
-    std::cout << pointer_1.get() << std::endl;
-    std::cout << pointer_2.get() << std::endl;
-    std::cout << pointer_3.get() << std::endl;
-    std::cout << pointer_3.use_count() << std::endl;
+    // std::cout << "address:" << SPtr.get() << std::endl;
+    std::cout << "address:" << SPtr2.get() << std::endl;
+    std::cout << "address:" << SPtr3.get() << std::endl;
 
+    std::cout << "reference counts:" << SPtr3.use_count() << std::endl;
+
+    auto SPtr4 = std::make_shared<Base>(1);
+
+    SPtr4->func();
+
+    std::cout << "reference counts:" << SPtr4.use_count() << std::endl;
 
     return 0;
 }
