@@ -27,3 +27,15 @@ __dynamic_cast__
 * This should only be used where 1% chance are that a cast may fail, otherwise if cast is completely valid i.e., 100% success kind, then dynamic_cast can be avoided solely due to performance reasons, and static_cast would do just fine.
 
 * This is sort of a supervisor, whether a cast is valid or not, capable of returning nullptr when cast fails.
+
+__static_cast__
+
+* for making explicit conversions.
+
+* This is for regular casts also because this is much easier to spot in regular code rather than c-style silent casts.
+
+* Catches few implicit conversions that are illegal but somehow allowed by c-style cast, like un-related pointer types.
+
+* It does not do runtime validation, it is a compile time cast.
+
+* Use with conversion operator and conversion constructor.
