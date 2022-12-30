@@ -36,7 +36,7 @@ int main()
 {
 	Derived o;
 
-	o.run();
+	// o.run();
 
 	return 0;
 }
