@@ -12,16 +12,21 @@ int fun(short c, double t)
 
 int main()
 {
-    // BOTH ARE VALID
-    int (*funP)(short, double) = fun;
+    // both 1 & 2 function pointer declarations are valid
+    // #1
     // int (*funP)(short, double) = &fun;
 
-    // BOTH ARE VALID
+    // #2
+    int (*funP)(short, double) = fun;
+
+    // both 1 & 2 function pointer usages are valid
+    // #1
+    std::cout << (*funP)(2, 3.4) << "\n";
+
+    // #2
     std::cout << funP(1, 2.5) << "\n";
 
-    int data = (*funP)(2, 3.4);
-
-    std::cout << data << "\n";
+    // #2 being the preferred one in both the scenarios above.
 
     return 0;
 }
