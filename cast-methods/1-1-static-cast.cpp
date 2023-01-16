@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-struct Int
+struct IntToString
 {
     int data;
 
-    Int(int data) : data(data) { cout << "conversion ctor\n"; };
+    IntToString(int data) : data(data) { cout << "conversion ctor\n"; };
 
     operator string()
     {
@@ -16,16 +16,19 @@ struct Int
 
 int main()
 {
-    Int obj(80);
+    IntToString obj(80);
 
     string S = obj;
-    obj = 80;
+    obj = 160;
 
     std::cout << S << "\n";
     std::cout << obj.data << "\n";
 
     string S2 = static_cast<string>(obj);
-    obj = static_cast<Int>(900);
+    std::cout << S2 << "\n";
+
+    obj = static_cast<IntToString>(240);
+    std::cout << obj.data << "\n";
 
     return 0;
 }
