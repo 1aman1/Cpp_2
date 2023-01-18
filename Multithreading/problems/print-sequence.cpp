@@ -9,7 +9,6 @@ constexpr int RANGE = 12;
 std::mutex mu;
 std::condition_variable cv_1, cv_2, cv_3;
 
-
 int i = 0;
 
 // void f1(int id)
@@ -44,6 +43,8 @@ void f1()
             ++i;
             std::cout << i << std::endl;
         }
+        std::cout << " f1 \n"
+                  << std::endl;
         lock.unlock();
         cv_2.notify_one();
     }
@@ -60,6 +61,9 @@ void f2()
             ++i;
             std::cout << i << std::endl;
         }
+        std::cout << " f2 \n"
+                  << std::endl;
+
         lock.unlock();
         cv_3.notify_one();
     }
@@ -76,6 +80,9 @@ void f3()
             ++i;
             std::cout << i << std::endl;
         }
+        std::cout << " f3 \n"
+                  << std::endl;
+
         lock.unlock();
         cv_1.notify_one();
     }
