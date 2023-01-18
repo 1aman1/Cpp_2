@@ -1,9 +1,0 @@
-sleep
-
-I am done with my timeslice, please dont give me another one until N milliseconds
-while sleeping, the thread can hold the hold entire duration.
-
-wait
-
-I am done with my timeslice, please dont give me another one until someone calls notify_one/all()
-While waiting, the thread releases the lock and waits until notified again.

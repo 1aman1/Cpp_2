@@ -14,19 +14,19 @@ std::mutex mtx2;
 void tfun1(int x)
 {
     mtx1.lock();
-    std::this_thread::sleep_for(std::chrono::seconds(2));
     mtx2.lock();
-    std::cout << "tfun1\n";
+    std::cout << "task 1\n";
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     mtx1.unlock();
     mtx2.unlock();
 }
 
 void tfun2(int x)
 {
+    mtx2.lock();
     mtx1.lock();
     // std::this_thread::sleep_for(std::chrono::seconds(1));
-    mtx2.lock();
-    std::cout << "tfun2\n";
+    std::cout << "task 2\n";
     mtx2.unlock();
     mtx1.unlock();
 }
