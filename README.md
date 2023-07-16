@@ -15,7 +15,7 @@
 
 __Compilation Behind The Scenes__
 
--> preprocess : remove comments, macroso substitution, includes header contents
+-> preprocess : remove comments, macros substitution, includes header contents
 
 -> compiler : gives assembly code
 

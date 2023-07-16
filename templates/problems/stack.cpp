@@ -2,13 +2,13 @@
 #include <vector>
 
 template <typename S>
-class Stack
+class myStack
 {
 protected:
-    std::vector<S> stackVec;
+    std::vector<S> m_container;
 
 public:
-    Stack() { stackVec.reserve(10); }
+    myStack() { m_container.reserve(10); }
 
     S top();
 
@@ -27,47 +27,47 @@ public:
 };
 
 template <typename S>
-S Stack<S>::top()
+S myStack<S>::top()
 {
-    if (!stackVec.empty())
-        return stackVec.back();
+    if (!m_container.empty())
+        return m_container.back();
     else
         return -1;
 }
 
 template <typename S>
-bool Stack<S>::empty()
+bool myStack<S>::empty()
 {
-    if (stackVec.empty())
+    if (m_container.empty())
         return true;
     else
         return false;
 }
 
 template <typename S>
-int Stack<S>::size()
+int myStack<S>::size()
 {
-    return stackVec.size();
+    return m_container.size();
 }
 
 template <typename S>
-void Stack<S>::push(S data)
+void myStack<S>::push(S data)
 {
-    stackVec.push_back(data);
+    m_container.push_back(data);
 }
 
 template <typename S>
-void Stack<S>::pop()
+void myStack<S>::pop()
 {
-    if (!stackVec.empty())
-        stackVec.pop_back();
+    if (!m_container.empty())
+        m_container.pop_back();
 }
 
 template <typename S>
-class InteractiveStack : public Stack<S>
+class InteractiveStack : public myStack<S>
 {
 public:
-    InteractiveStack<S>() : Stack<S>(){};
+    InteractiveStack<S>() : myStack<S>(){};
 
     void menu();
 };
@@ -96,7 +96,7 @@ void InteractiveStack<S>::menu()
         case 1:
         {
             std::cout << "\nstack top :"
-                      << Stack<S>::top();
+                      << myStack<S>::top();
             break;
         }
 
@@ -106,14 +106,14 @@ void InteractiveStack<S>::menu()
             std::cout << "\nPUSH : ";
             std::cin >> value;
 
-            Stack<S>::push(value);
+            myStack<S>::push(value);
 
             break;
         }
 
         case 3:
         {
-            Stack<S>::pop();
+            myStack<S>::pop();
             break;
         }
 
@@ -121,14 +121,14 @@ void InteractiveStack<S>::menu()
         {
             std::cout << "\nis Empty : "
                       << std::boolalpha
-                      << Stack<S>::empty();
+                      << myStack<S>::empty();
             break;
         }
 
         case 5:
         {
             std::cout << "\nsize :"
-                      << Stack<S>::size();
+                      << myStack<S>::size();
         }
 
         default:
@@ -145,7 +145,7 @@ void InteractiveStack<S>::menu()
 
 int main()
 {
-    // Stack<int> obj;
+    // myStack<int> obj;
     // obj.push(10);
 
     // std::cout << "\n"

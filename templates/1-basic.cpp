@@ -9,7 +9,7 @@ T add(T a, T b)
 
 int add(int a, int b)
 {
-    std::cout << "Int\n";
+    std::cout << "diff func Int\n";
 
     return a + b;
 }
