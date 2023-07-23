@@ -14,46 +14,48 @@ public:
     mySharedPtr() : rawPtr(nullptr), refCount(new uint(0)) { cout << "0-arg ctor\n"; }
     mySharedPtr(T *ptr) : rawPtr(ptr), refCount(new uint(1)) { cout << "1-arg ctor\n"; }
 
-    mySharedPtr(const mySharedPtr &rhs)
+    mySharedPtr(const mySharedPtr &rhs) : rawPtr(rhs.rawPtr), refCount(rhs.refCount)
     {
-        this->rawPtr = rhs.rawPtr;
-        this->refCount = rhs.refCount;
         if (rhs.rawPtr != nullptr)
         {
             ++(*(this->refCount));
         }
     }
 
+    mySharedPtr(mySharedPtr &&dyingRhs) : rawPtr(dyingRhs.rawPtr), refCount(dyingRhs.refCount)
+    {
+        dyingRhs.rawPtr = dyingRhs.refCount = nullptr;
+    }
+
     mySharedPtr &operator=(const mySharedPtr &rhs)
     {
-        __cleanup__();
-
-        this->rawPtr = rhs.rawPtr;
-        this->refCount = rhs.refCount;
-        if (rhs.rawPtr != nullptr)
+        if (this != &rhs)
         {
-            ++(*(this->refCount));
+            __cleanup__();
+
+            this->rawPtr = rhs.rawPtr;
+            this->refCount = rhs.refCount;
+
+            if (rhs.rawPtr != nullptr)
+            {
+                ++(*(this->refCount));
+            }
         }
 
         return *this;
     }
 
-    mySharedPtr(mySharedPtr &&dyingRhs)
-    {
-        this->rawPtr = dyingRhs.rawPtr;
-        this->refCount = dyingRhs.refCount;
-
-        dyingRhs.rawPtr = dyingRhs.refCount = nullptr;
-    }
-
     mySharedPtr &operator=(mySharedPtr &&dyingRhs)
     {
-        __cleanup__();
+        if (this != &dyingRhs)
+        {
+            __cleanup__();
 
-        this->rawPtr = dyingRhs.rawPtr;
-        this->refCount = dyingRhs.refCount;
+            this->rawPtr = dyingRhs.rawPtr;
+            this->refCount = dyingRhs.refCount;
 
-        dyingRhs.rawPtr = dyingRhs.refCount = nullptr;
+            dyingRhs.rawPtr = dyingRhs.refCount = nullptr;
+        }
 
         return *this;
     }

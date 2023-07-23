@@ -14,16 +14,21 @@ public:
     myUniquePtr(const myUniquePtr &tmp) = delete;
     myUniquePtr &operator=(const myUniquePtr &tmp) = delete;
 
-    myUniquePtr(myUniquePtr &&dyingRhs)
+    myUniquePtr(myUniquePtr &&dyingRhs) : rawPtr(dyingRhs.rawPtr)
     {
-        this->rawPtr = dyingRhs.rawPtr;
         dyingRhs.rawPtr = nullptr;
     }
 
     myUniquePtr &operator=(myUniquePtr &&dyingRhs)
     {
-        this->rawPtr = dyingRhs.rawPtr;
-        dyingRhs.rawPtr = nullptr;
+        if (this != dyingRhs)
+        {
+            __cleanup__();
+
+            this->rawPtr = dyingRhs.rawPtr;
+            
+            dyingRhs.rawPtr = nullptr;
+        }
 
         return *this;
     }
